@@ -3,13 +3,29 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #1E3A8A; /* 코발트 블루 */
+  --primary-dark: #172554;
+  --secondary: #3B82F6;
+  --secondary-dark: #2563EB;
+  --accent: #8B5CF6; /* 보라색 강조 */
+  --success: #10B981;
+  --neutral-100: #F9FAFB;
+  --neutral-200: #F3F4F6;
+  --neutral-300: #E5E7EB;
+  --neutral-400: #D1D5DB;
+  --neutral-500: #9CA3AF;
+  --neutral-600: #6B7280;
+  --neutral-700: #4B5563;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-urbanist);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +35,94 @@
   }
 }
 
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), Arial, sans-serif;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@keyframes colorChange {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hover-text-animation {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.hover-text-animation:hover {
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--primary-dark), var(--secondary-dark));
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: colorChange 3s ease infinite;
+  transform: scale(1.15);
+}
+
+/* 러닝크루 추가 애니메이션 및 효과 */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.btn-gradient {
+  background: linear-gradient(45deg, var(--primary) 0%, var(--accent) 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
 }
