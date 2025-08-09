@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -92,10 +93,14 @@ const HeroSection = () => {
               {/* 러너 일러스트 */}
               <div className="rounded-3xl overflow-hidden shadow-2xl bg-white border-4 border-white aspect-square md:aspect-[4/3] flex items-center justify-center p-6">
                 <div className="relative w-full h-full">
-                  <svg className="w-full h-full opacity-90" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-                    <use href="/images/running.svg#svg-root" />
-                    <image href="/images/running.svg" className="w-full h-full" />
-                  </svg>
+                  <div className="relative w-full h-full">
+                    <Image 
+                      src="/images/running.svg" 
+                      alt="러닝 일러스트레이션" 
+                      fill 
+                      className="w-full h-full object-contain opacity-90" 
+                    />
+                  </div>
                 </div>
               </div>
               

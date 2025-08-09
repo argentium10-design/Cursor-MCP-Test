@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 interface Testimonial {
   name: string;
@@ -51,13 +52,14 @@ const TestimonialsSection = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -134,16 +136,18 @@ const TestimonialsSection = () => {
                     
                     {/* 인용구 */}
                     <blockquote className="text-lg md:text-xl mb-8 italic text-neutral-700">
-                      "{testimonial.quote}"
+                      &ldquo;{testimonial.quote}&rdquo;
                     </blockquote>
                     
                     {/* 작성자 */}
                     <div className="flex items-center">
                       {testimonial.imageUrl ? (
                         <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                          <img
+                          <Image
                             src={testimonial.imageUrl}
                             alt={testimonial.name}
+                            width={48}
+                            height={48}
                             className="w-full h-full object-cover"
                           />
                         </div>

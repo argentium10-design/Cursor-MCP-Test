@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const BenefitsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,13 +21,14 @@ const BenefitsSection = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -34,10 +36,12 @@ const BenefitsSection = () => {
   const benefits = [
     {
       icon: (
-        <img 
+        <Image 
           src="/icons/target.svg" 
           alt="목표 달성" 
-          className="w-12 h-12 text-white" 
+          width={48}
+          height={48}
+          className="text-white" 
         />
       ),
       title: '몰입도 상승',
@@ -46,10 +50,12 @@ const BenefitsSection = () => {
     },
     {
       icon: (
-        <img 
+        <Image 
           src="/icons/zap.svg" 
           alt="목표 달성률" 
-          className="w-12 h-12 text-white" 
+          width={48}
+          height={48}
+          className="text-white" 
         />
       ),
       title: '목표 달성률 UP',
@@ -58,10 +64,12 @@ const BenefitsSection = () => {
     },
     {
       icon: (
-        <img 
+        <Image 
           src="/icons/users.svg" 
           alt="함께하는 즐거움" 
-          className="w-12 h-12 text-white" 
+          width={48}
+          height={48}
+          className="text-white" 
         />
       ),
       title: '혼자가 아님',
@@ -70,10 +78,12 @@ const BenefitsSection = () => {
     },
     {
       icon: (
-        <img 
+        <Image 
           src="/icons/message.svg" 
           alt="실시간 피드백" 
-          className="w-12 h-12 text-white" 
+          width={48}
+          height={48}
+          className="text-white" 
         />
       ),
       title: '실시간 피드백',
